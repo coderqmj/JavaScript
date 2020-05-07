@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redux的实现</title>
+</head>
+
+<body>
+  <button onclick="dispatch({type:'decrement',n:1 })">-</button>
+  <span id="countDisplay">10</span>
+  <button onclick="dispatch({type:'increment',n:1 })">+</button>
+
+  <script>
+    const countDisplay = document.querySelector('#countDisplay')
+    const countState = {
+      count: 5
+    }
+
+    renderCount = (state) => {
+      countDisplay.innerHTML = state.count
+    }
+    renderCount(countState)
+
+   const createStore = (state,changeState) => {
+     const getState = () => {
+       return {
+         getState
+       }
+     }
+   }
+
+    const changeState = (action) => {
+      switch (action.type) {
+        case 'decrement':
+          countState.count -= action.n
+          break;
+        case 'increment':
+          countState.count += action.n
+          break;
+        default:
+          break;
+      }
+    }
+    const dispatch = (action) => {
+      changeState(action)
+      renderCount(countState)
+    }
+  </script>
+</body>
+
+</html>
