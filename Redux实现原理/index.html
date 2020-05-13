@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现redux</title>
+</head>
+
+<body>
+  <button onclick="dispatch({type:'decrement',n:1})">-</button>
+  <span id="countDisplay">10</span>
+  <button onclick="dispatch({type:'increment',n:1})">+</button>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/redux/4.0.5/redux.js"></script>
+  <script>
+    
+    // 获取DOM元素
+    const countDisplay = document.querySelector('#countDisplay')
+    // 定义数据源
+    const countState = {
+      count: 5
+    }
+    renderCount = (state) => {
+      countDisplay.innerHTML = state.count
+    }
+    // 渲染数据
+    renderCount(countState)
+
+    // 更改数据事件
+    changeCount = (action) => {
+      switch (action.type) {
+        case 'increment':
+          countState.count += action.n
+          break;
+        case 'decrement':
+          countState.count -= action.n
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    // 点击事件
+    dispatch = (action) => {
+      changeCount(action)
+      // 重新渲染
+      renderCount(countState)
+    }
+  </script>
+</body>
+
+</html>

@@ -25,7 +25,10 @@
     //   renderCount(countState)
     //   console.log(countState.count)
     // }
-
+    renderCount = () => {
+      countDisplay.innerHTML = countState.count
+    }
+    renderCount()
     const changeState = (action) => {
       switch (action.type) {
         case 'decrement':

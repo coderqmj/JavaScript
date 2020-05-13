@@ -8,28 +8,16 @@
 </head>
 
 <body>
-  <button onclick="dispatch({type:'decrement',n:1 })">-</button>
+  <button onclick="store.disPatch({type:'decrement',n:1 })">-</button>
   <span id="countDisplay">10</span>
-  <button onclick="dispatch({type:'increment',n:1 })">+</button>
+  <button onclick="store.disPatch({type:'increment',n:1 })">+</button>
 
+  <script src="https://cdn.bootcdn.net/ajax/libs/redux/4.0.5/redux.js"></script>
   <script>
     const countDisplay = document.querySelector('#countDisplay')
     const countState = {
       count: 5
     }
-
-    renderCount = (state) => {
-      countDisplay.innerHTML = state.count
-    }
-    renderCount(countState)
-
-   const createStore = (state,changeState) => {
-     const getState = () => {
-       return {
-         getState
-       }
-     }
-   }
 
     const changeState = (action) => {
       switch (action.type) {
@@ -43,10 +31,28 @@
           break;
       }
     }
-    const dispatch = (action) => {
-      changeState(action)
-      renderCount(countState)
-    }
+
+  //   const createStore = (state,changeState) => {
+  //     const getState = () => state
+  //     const listeners = []
+  //     const subscribe = (listener) => listeners.push(listener)
+  //     const disPatch = (action) => {
+  //       changeState(action)
+  //       listeners.forEach(listener => listener())
+  //     }
+      
+  //     return {
+  //       getState,
+  //       disPatch,
+  //       subscribe
+  //     }
+  //  }
+   const store = Redux.createStore(countState, changeState)
+   countRender = () => {
+     countDisplay.innerHTML = store.getState().count
+   }
+   countRender()
+   store.subscribe(countRender)
   </script>
 </body>
 
