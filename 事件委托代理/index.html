@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托代理</title>
+</head>
+
+<body>
+  <style>
+    .item {
+      cursor: pointer;
+    }
+  </style>
+
+
+  <ul id="todo-app">
+    <li class="item">吃饭</li>
+    <li class="item">写代码</li>
+    <li class="item">看电视</li>
+    <li class="item">睡觉</li>
+  </ul>
+  <script>
+
+    // 这种方式对于事项过多来说效率非常低下，可能会创建数千个监听器，非常不建议
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   let app = document.querySelector('#todo-app')
+    //   let items = app.getElementsByClassName('item')
+
+    //   for (let item of items) {
+    //     item.addEventListener('click', function () {
+    //       alert('你点击了' + item.innerHTML)
+    //     })
+    //   }
+    // })
+
+    // 事件委托，将一个事件侦听器绑定到整个容器，然后在单击下可以访问每个列表项
+    document.addEventListener('DOMContentLoaded', function () {
+      let app = document.querySelector('#todo-app')
+      console.log(app)
+      app.addEventListener('click', function (e) {
+        if (e.target && e.target.nodeName === 'LI') {
+          let item = e.target
+          alert('你点击了' + item.innerHTML)
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>
