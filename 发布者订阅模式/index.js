@@ -21,6 +21,6 @@ let event = {
 function dog() {
   console.log('汪汪汪')
 }
-event.on('dog', data => console.log(data))
+// event.on('dog', data => console.log(data))
 event.on('dog', dog)
-event.emit('dog', ['嘿嘿嘿', '哈哈哈'])
+event.emit('dog')

@@ -36,17 +36,24 @@
     // })
 
     // 事件委托，将一个事件侦听器绑定到整个容器，然后在单击下可以访问每个列表项
-    document.addEventListener('DOMContentLoaded', function () {
-      let app = document.querySelector('#todo-app')
-      console.log(app)
-      app.addEventListener('click', function (e) {
-        if (e.target && e.target.nodeName === 'LI') {
-          let item = e.target
-          alert('你点击了' + item.innerHTML)
-        }
-      })
-    })
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   let app = document.querySelector('#todo-app')
+    //   console.log(app)
+    //   app.addEventListener('click', function (e) {
+    //     if (e.target && e.target.nodeName === 'LI') {
+    //       let item = e.target
+    //       alert('你点击了' + item.innerHTML)
+    //     }
+    //   })
+    // })
 
+    let app = document.querySelector('#todo-app')
+    app.addEventListener('click', (e) => {
+      if (e.target && e.target.nodeName === 'LI') {
+        let item = e.target
+        alert(item.innerHTML)
+      }
+    })
   </script>
 </body>
 
