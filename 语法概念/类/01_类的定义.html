@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // ES5定义类
+    function Person() {
+
+    }
+    // var p = new Person()
+
+    // ES6
+    class Phone {
+      // 通过constructor传入参数
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 方法可以在这里定义
+      coding() {
+        console.log(this)
+        console.log(this.name + ' is coding')
+      }
+    }
+    const p = new Phone('qmj', 18)
+    p.coding()
+
+    // this绑定问题
+    const func = p.coding;
+    func() // 报错
+  </script>
+</body>
+</html>
