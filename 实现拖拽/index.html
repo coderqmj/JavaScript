@@ -4,38 +4,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>拖拽实现</title>
-</head>
-<style>
-  body {
-    padding: 0;
-    margin: 0;
-  }
-  .parent {
-    position: relative;
-    height: 200px;
-}
-.child {
-    width: 80px;
-    height: 40px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background: blue;
-}
+  <title>实现拖拽</title>
 
-</style>
+  <style>
+    #ball {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: aqua;
+      cursor: pointer;
+      position: absolute;
+    }
+  </style>
+</head>
 
 <body>
-  <div class="parent">
-    <div class="child"></div>
-  </div>
-</body>
-<script>
+  <div id="ball"></div>
 
-</script>
+  <script>
+    const ball = document.getElementById('ball')
+    let isMove = false
+    ball.addEventListener('mousedown', () => {
+      isMove = true
+    })
+    // 绑定为元素本身，超出范围时，元素就停止移动
+    // ball.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
+      if (!isMove) return
+      let x = e.pageX - ball.offsetWidth / 2
+      let y = e.pageY - ball.offsetHeight / 2
+      ball.style.left = `${x}px`
+      ball.style.top = `${y}px`
+    })
+    ball.addEventListener('mouseup', ()=> {
+      isMove = false
+    })
+  </script>
+</body>
 
 </html>
