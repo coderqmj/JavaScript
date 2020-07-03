@@ -6,8 +6,25 @@
 // }
 // console.log((5).add(3).mins(2))
 
-var arr = [1,2,3,4,5,6,7,8,9,10];
-arr.sort(function(){
-    return Math.random() - 0.5;
+// var str = 'qiumojain'
+// var str1 = new String('qiu')
+// console.log(str1 instanceof String, typeof (str) === 'string', typeof (str1), Object.prototype.toString.call(str))
+
+// function sum(n) {
+//   return (1+n)*n/2
+// }
+
+// console.log(sum(10))
+
+setTimeout(function() {
+  console.log('setTimeout');
 })
-console.log(arr);
+
+new Promise(function(resolve) {
+  console.log('promise');
+  resolve()
+}).then(function() {
+  console.log('then');
+})
+
+console.log('console');
