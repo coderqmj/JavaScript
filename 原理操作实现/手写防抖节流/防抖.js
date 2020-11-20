@@ -3,7 +3,8 @@ function debounce(func, wait, immediate) {
   let timeout
   return function () {
     // 改变内部this的指向
-    // console.log(this) container调用该函数，所以this指向container
+    // console.log(this) container调用该函数，
+    // 所以this指向container
     let context = this
     let args = arguments
     clearTimeout(timeout)
