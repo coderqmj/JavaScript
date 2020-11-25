@@ -1,10 +1,10 @@
 // 统计当前网页h开头元素
 function countStartWithH() {
   const countObj = {};
-  helper(document.documentElement, countObj);
+  findH(document.documentElement, countObj);
   return countObj;
 }
-function helper(node, countObj) {
+function findH(node, countObj) {
   let count = 0
   if (node === null) {
     return null;
@@ -23,7 +23,7 @@ function helper(node, countObj) {
   if (node.children.length !== 0) {
     // 遍历子元素
     for (let i = 0; i < node.children.length; i++) {
-      helper(node.children[i], countObj);
+      findH(node.children[i], countObj);
     }
   }
 }

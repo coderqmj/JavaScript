@@ -13,11 +13,10 @@ Array.prototype.myFilter = function (fn) {
   for (let i = 0; i < len; i++) {
       // 处理时注意this指向
       const result = fn.call(arguments[1], arr[i], i, arr);
-      result && temp.push(arr[i]);
+      result && temp.push(arr[i]); //过滤器
   }
   return temp;
 }
-
 // reduce实现filter
 Array.prototype._filter = function (callback) {
   if(typeof callback === 'function') {
@@ -29,4 +28,3 @@ Array.prototype._filter = function (callback) {
     console.log(new Error('callback is not function'))
   }
 }
-+

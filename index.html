@@ -15,11 +15,76 @@
       color: red;
     }
   </style>
-  <p class="classA classB">123</p>
+  <p class="classA classB"></p>
 </head>
 
 <body>
   <script src="./index.js"></script>
+  <script>
+
+    function add(a) {
+      function sum(b) { // 使用闭包
+        a = a + b; // 累加
+        return sum;
+      }
+      sum.toString = function () { // 重写toSting() 方法
+        return a;
+      }
+      return sum; // 返回一个函数
+    }
+    console.log(add(1)(2)(3)) // 6
+
+
+    function add1(x) {
+      var sum = x;
+      var tmp = function (y) {
+        sum = sum + y;
+        return tmp;
+      };
+      tmp.toString = function () {
+        return sum;
+      };
+      return tmp;
+    }
+    console.log(add1(1)(2)(3))
+
+
+    const List = [
+      { id: 1, name: 'child1', parentId: 0 },
+      { id: 2, name: 'child2', parentId: 0 },
+      { id: 6, name: 'child2_1', parentId: 2 },
+      { id: 0, name: 'root', parentId: null },
+      { id: 5, name: 'child1_2', parentId: 1 },
+      { id: 4, name: 'child1_1', parentId: 1 },
+      { id: 3, name: 'child3', parentId: 0 },
+      { id: 7, name: 'child3_1', parentId: 3 }
+    ]
+    // 对象列表转为树结构
+    function ListToTree(list) {
+      console.log(list)
+      const copyList = list.slice(0)
+      console.log(copyList)
+      const tree = []
+      for (let i = 0; i < copyList.length; i++) {
+        // 找出每一项的父节点，并将其作为父节点的children
+        for (let j = 0; j < copyList.length; j++) {
+          if (copyList[i].parentId === copyList[j].id) {
+            if (copyList[j].children === undefined) {
+              copyList[j].children = []
+            }
+            copyList[j].children.push(copyList[i])
+          }
+        }
+        // 把根节点提取出来，parentId为null的就是根节点
+        if (copyList[i].parentId === null) {
+          tree.push(copyList[i])
+        }
+      }
+      return tree
+    }
+    const tree = ListToTree(List)
+    console.log(JSON.stringify(tree))
+  </script>
 </body>
 
 </html>

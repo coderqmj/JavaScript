@@ -3,13 +3,11 @@ Array.prototype.myMap = function(fn) {
   if (typeof fn !== 'function') {
       throw new TypeError(fn + 'is not a function');
   }
-
   // 获取需要处理的数组内容
   const arr = this;
   const len = arr.length;
   // 新建一个空数组用于装载新的内容
   const temp = new Array(len);
-
   // 对数组中每个值进行处理
   for (let i = 0; i < len; i++) {
       // 获取第二个参数，改变this指向
@@ -19,8 +17,6 @@ Array.prototype.myMap = function(fn) {
   // 返回新的结果
   return temp;
 }
-
-
 // reduce实现map
 Array.prototype._map = function (callback) {
   if(typeof callback === 'function') {
