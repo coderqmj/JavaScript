@@ -1,8 +1,6 @@
-
-
 function curry(func) {
-
   return function curried(...args) {
+    console.log(args, func.length)
     if (args.length >= func.length) {
       return func.apply(this, args);
     } else {
