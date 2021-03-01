@@ -28,6 +28,20 @@ class Promise {
     } catch (e) {
       reject(e);//promise失败了
     }
-
+  }
+  then(resolve, reject) {
+    if(this.status === 'resolved') {
+      resolve(this.value);
+    }else if(this.status === 'rejected') {
+      reject(this.reason);
+    }
+    if(this.status === 'pending') {
+      this.onResolvedCallbacks.push(() => {
+        resolve(this.value);
+      })
+      this.onRejectedCallbacks.push(() => {
+        reject(this.reason);
+      })
+    }
   }
 }

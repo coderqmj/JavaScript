@@ -23,10 +23,10 @@ class myPromise {
       }
     }
   }
-  // 步骤二 实现.then
+  // 步骤二 实现.then  返回值必须是promise（保证链式调用），
   then(onFulFilled, onRejected) {
     if (this.status === 'resolved') {
-      onFulFilled('this.value')
+      onFulFilled(this.value)
     }
     if (this.status === 'rejected') {
       onRejected()
