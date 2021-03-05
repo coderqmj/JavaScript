@@ -51,6 +51,7 @@
     app.addEventListener('click', (e) => {
       if (e.target && e.target.nodeName === 'LI') {
         let item = e.target
+        console.log('1',item, '2',e.currentTarget)
         alert(item.innerHTML)
       }
     })

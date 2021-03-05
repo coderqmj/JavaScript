@@ -1,6 +1,6 @@
 // sort 并不是真正的乱序
 // 计算机的 random 函数因为循环周期的存在，无法生成真正的随机数
-Array.sort((a, b) => 0.5 - Math.random())
+// Array.sort((a, b) => 0.5 - Math.random())
 
 // 洗牌算法
 Array.prototype.shuffle = function () {
@@ -23,3 +23,15 @@ function shuffle(arr) {
   }
   return arr;
 }
+
+
+function foo(arr) {
+  let len = arr.length, random;
+  while(len !== 0) {
+    random = (Math.random() * len--) | 0;
+    [arr[len], arr[random]] = [arr[random], arr[len]];
+  }
+  return arr;
+}
+
+console.log(foo([1,2,3,4,5]))
