@@ -72,7 +72,8 @@ class Scheduler {
     const result = await promiseCreator();
     this.count --;
     if (this.taskList.length > 0) {
-      this.taskList.shift()();
+      // console.log(this.taskList.shift()())
+      this.taskList.shift()(); // 把任务函数拿出来用
     }
     return result;
   }
@@ -96,41 +97,41 @@ addTask(400, '4');
 
 
 
-function Scheduler() {
-	let temp = 0;
-	let res = [];
-	let len = 0;
-	this.add = function (promiseCreator) {
-		let myPromise = new Promise((resolve) => {
-			temp++;
-			if (temp <= 2) {
-				resolve(
-					promiseCreator().then(function f() {
-						if (res.length) {
-							let { myresolve, fullfilled } = res.shift();
-							myresolve(fullfilled().then(f));
-						} else {
-							temp = 0;
-						}
-					})
-				);
-			} else {
-				res.push({ fullfilled: promiseCreator, myresolve: resolve });
-			}
-		});
-		return myPromise;
-	};
-}
+// function Scheduler() {
+// 	let temp = 0;
+// 	let res = [];
+// 	let len = 0;
+// 	this.add = function (promiseCreator) {
+// 		let myPromise = new Promise((resolve) => {
+// 			temp++;
+// 			if (temp <= 2) {
+// 				resolve(
+// 					promiseCreator().then(function f() {
+// 						if (res.length) {
+// 							let { myresolve, fullfilled } = res.shift();
+// 							myresolve(fullfilled().then(f));
+// 						} else {
+// 							temp = 0;
+// 						}
+// 					})
+// 				);
+// 			} else {
+// 				res.push({ fullfilled: promiseCreator, myresolve: resolve });
+// 			}
+// 		});
+// 		return myPromise;
+// 	};
+// }
 
-const timeout = (time) =>
-	new Promise((resolve) => {
-		setTimeout(resolve, time);
-	});
-const scheduler = new Scheduler();
-const addTask = (time, order) => {
-	scheduler.add(() => timeout(time)).then(() => console.log(order));
-};
-addTask(1000, "1");
-addTask(500, "2");
-addTask(300, "3");
-addTask(100, "4");
+// const timeout = (time) =>
+// 	new Promise((resolve) => {
+// 		setTimeout(resolve, time);
+// 	});
+// const scheduler = new Scheduler();
+// const addTask = (time, order) => {
+// 	scheduler.add(() => timeout(time)).then(() => console.log(order));
+// };
+// addTask(1000, "1");
+// addTask(500, "2");
+// addTask(300, "3");
+// addTask(100, "4");
