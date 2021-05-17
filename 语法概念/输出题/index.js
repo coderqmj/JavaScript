@@ -40,32 +40,32 @@
 
 
 
-async function async1(){
-console.log('async1 start')
-await async2()
-console.log('async1 end')  // await后面这行相当于.then，微任务
-}
+// async function async1(){
+// console.log('async1 start')
+// await async2()
+// console.log('async1 end')  // await后面这行相当于.then，微任务
+// }
 
-async function async2(){
-console.log('async2')
-}
+// async function async2(){
+// console.log('async2')
+// }
 
-console.log('script start')
+// console.log('script start')
 
-setTimeout(function(){
-console.log('setTimeOut')
-}, 0)
+// setTimeout(function(){
+// console.log('setTimeOut')
+// }, 0)
 
-async1()
+// async1()
 
-new Promise(function(resolve){
-console.log('promise1')
-resolve()
-}).then(function(){
-console.log('promise2')
-})
+// new Promise(function(resolve){
+// console.log('promise1')
+// resolve()
+// }).then(function(){
+// console.log('promise2')
+// })
 
-console.log('script end')
+// console.log('script end')
 // script start => async1 start => async2 => async1 end => promise1 => script end => promise2 => setTimeOut
 
 
@@ -112,4 +112,28 @@ console.log('script end')
 
 // console.log(Object.create(null))
 
-console.log(Symbol('1'),Symbol('1'))
+// console.log(Symbol('1'),Symbol('1'))
+
+// (async () => {
+//   console.log(1);
+//   setTimeout(() => {
+//     console.log(2) 
+//   }, 0);
+//   await new Promise((res, rej) => {
+//     console.log(3)
+//   }).then(() => {
+//     console.log(4)
+//   });
+//   console.log(5)
+// })()
+
+function nums(a,b) {
+  if(a>b) {
+    console.log('a is')
+  }else {
+    console.log('b');
+    return a + b
+  }
+}
+console.log(nums(4,2))
+console.log(nums(1,2))
