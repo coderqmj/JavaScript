@@ -1,3 +1,10 @@
+/**
+ * 1.判断传入的fn是否为函数类型
+ * 2.赋值，获取到数组机器长度
+ * 3.设置返回值的初始状态，如果有预设值就为预设值，如果没有设置为arr[0]，再使索引+1
+ * 4.遍历索引，是得每一个元素都被reducer进行处理
+ */
+
 Array.prototype.myReduce = function (fn) {
   if (typeof fn !== 'function') {
     throw new TypeError(`${fn} is not a function`);
@@ -27,3 +34,4 @@ Array.prototype.myReduce = function (fn) {
   }
   return value;
 }
+
