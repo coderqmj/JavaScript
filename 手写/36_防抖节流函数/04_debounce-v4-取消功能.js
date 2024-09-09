@@ -1,7 +1,7 @@
 function debounce(fn, delay, immediate = false) {
   // 1.定义一个定时器, 保存上一次的定时器
   let timer = null;
-  let isInvoke = false;
+  let isInvoke = false; // 是否执行过第一次，true的话，走的就是延迟逻辑，false并且immediate则走立即执行逻辑
 
   // 2.真正执行的函数
   const _debounce = function (...args) {
